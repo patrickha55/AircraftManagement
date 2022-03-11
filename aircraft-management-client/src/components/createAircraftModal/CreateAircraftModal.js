@@ -5,7 +5,7 @@ import useInput from '../../hooks/use-input';
 import Input from '../Form/Input';
 import Select from '../Form/Select';
 
-const GET_ROLES = gql`
+export const GET_ROLES = gql`
     query Roles {
         roles {
             id,
@@ -14,7 +14,7 @@ const GET_ROLES = gql`
     }
 `;
 
-const CREATE_AIRCRAFT = gql`
+export const CREATE_AIRCRAFT = gql`
     mutation CreateAircraft ($aircraft: aircraftInput) {
         createAircraft(aircraft: $aircraft) {
             id

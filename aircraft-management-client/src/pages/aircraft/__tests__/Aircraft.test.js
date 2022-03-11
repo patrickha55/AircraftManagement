@@ -1,13 +1,8 @@
-import React from 'react';
-import { ReactDOM } from 'react';
-import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
-import { render, fireEvent, cleanup, screen } from '@testing-library/react';
-import Aircraft, { GET_AIRCRAFTS } from '../Aircraft';
 import { MockedProvider } from '@apollo/react-testing';
+import { cleanup, render } from '@testing-library/react';
+import React from 'react';
 import renderer from 'react-test-renderer';
-import waait from 'waait';
-
+import Aircraft, { GET_AIRCRAFTS } from '../Aircraft';
 
 afterEach(cleanup);
 
@@ -23,50 +18,46 @@ const aircraftMocks = [
         },
         result: {
             data: {
-                aircraft: aircrafts
-            }
+                aircrafts: aircrafts
+            },
+            loading: false,
+            error: undefined
         }
     }
 ];
 
-it("renders without error.", () => {
-    render(
-        <MockedProvider mocks={aircraftMocks} addTypename={false} >
-            <Aircraft />
-        </MockedProvider>
-    );
-});
-
-it('should renders loading state initially', () => {
-    //arrange
-    const component = renderer.create(
-        <MockedProvider mocks={[]}>
-            <Aircraft />
-        </MockedProvider>,
-    );
-
-    const tree = component.toJSON();
-
-    // assert
-    expect(tree).toMatchSnapshot();
-
-    expect(tree.children).toContain('Loading...');
-});
-
-// it('should renders aircrafts', async () => {
-//     //arrange
+// it("renders without error.", () => {
 //     render(
 //         <MockedProvider mocks={aircraftMocks} addTypename={false} >
 //             <Aircraft />
 //         </MockedProvider>
 //     );
-
-//     await waait(2000);
-//     //act
-//     // jest.mock("aircrafts", () => aircrafts);
-
-//     // const h2s = queryAllByText(/Boeing|Lockheed Martin/i);
-//     //assert
-
-//     screen.debug();
 // });
+
+// it('should renders loading state initially', () => {
+//     //arrange
+//     const component = renderer.create(
+//         <MockedProvider mocks={[]}>
+//             <Aircraft />
+//         </MockedProvider>,
+//     );
+
+//     const tree = component.toJSON();
+
+//     // assert
+//     expect(tree).toMatchSnapshot();
+
+//     expect(tree.children).toContain('Loading...');
+// });
+
+it('should renders aircrafts', async () => {
+    const component = renderer.create(<MockedProvider mocks={aircraftMocks} addTypename={false} >
+        <Aircraft />
+    </MockedProvider>);
+
+    const tree = component.toJSON();
+
+    await new Promise(resolve => setTimeout(resolve, 4000));
+
+    expect(tree).toMatchSnapshot();
+});

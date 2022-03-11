@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should renders loading state initially 1`] = `
+exports[`should renders aircrafts 1`] = `
 <p>
   Loading...
 </p>
