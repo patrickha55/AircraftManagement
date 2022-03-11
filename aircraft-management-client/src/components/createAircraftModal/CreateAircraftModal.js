@@ -1,9 +1,9 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { Box, Button, Modal, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import useInput from '../hooks/use-input';
-import Input from './Form/Input';
-import Select from './Form/Select';
+import useInput from '../../hooks/use-input';
+import Input from '../Form/Input';
+import Select from '../Form/Select';
 
 const GET_ROLES = gql`
     query Roles {

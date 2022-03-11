@@ -2,9 +2,10 @@ import { gql, useMutation, useQuery } from '@apollo/client';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, IconButton } from '@mui/material';
 import { useEffect, useState } from 'react';
-import CreateAircraftModal from '../components/CreateAircraftModal';
+import CreateAircraftModal from '../../components/createAircraftModal/CreateAircraftModal';
+import React from 'react';
 
-const GET_AIRCRAFTS = gql`
+export const GET_AIRCRAFTS = gql`
     query Aircrafts{
         aircrafts {
             id
@@ -18,7 +19,7 @@ const GET_AIRCRAFTS = gql`
     }
 `;
 
-const DELETE_AIRCRAFT = gql`
+export const DELETE_AIRCRAFT = gql`
     mutation ($id: Int!) {
         deleteAircraft (id: $id)
     }
@@ -60,8 +61,6 @@ const Aircraft = () => {
             setAircrafts(aircrafts.filter(p => p.id !== id));
         };
     };
-
-    let content = <p>Loading</p>;
 
     if (error && !loadingAircraft) return <h2 className='alert alert-danger'>{error.message}</h2>;
 
@@ -119,7 +118,7 @@ const Aircraft = () => {
         )
     }
 
-    return content;
+    return <p>Loading...</p>;
 }
 
 export default Aircraft;

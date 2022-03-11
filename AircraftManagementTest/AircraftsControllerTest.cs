@@ -22,7 +22,7 @@ namespace AircraftManagementTest
             _mapper = mapper;
             _aircraftRepository = new Mock<IAircraftRepository>();
             _roleRepository = new Mock<IRoleRepository>();
-            _aircraftsController = new AircraftsController(_aircraftRepository.Object, _mapper, _roleRepository.Object);
+            _aircraftsController = new AircraftsController(_aircraftRepository.Object, _mapper);
         }
 
         [Fact]
