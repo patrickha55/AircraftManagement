@@ -9,10 +9,11 @@ const Select = ({
     isValid }) => {
     return (
         <div className='mb-3'>
-            <label className="form-label">{label}</label>
+            <label className="form-label" htmlFor={label}>{label}</label>
             <select className={`form-select mb-3 fs-6 ${size ? "form-select-sm" : "form-select-lg"} ${!isValid && "border-danger"}`}
                 aria-label=".form-select-lg example"
                 onChange={handleSelect}
+                id={label}
             >
                 <option selected>{defaultOptionLabel}</option>
                 {

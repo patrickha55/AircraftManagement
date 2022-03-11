@@ -9,13 +9,14 @@ const Input = ({
     hasError }) => {
     return (
         <div className="mb-3">
-            <label className="form-label">{label}</label>
+            <label className="form-label" htmlFor={`${label}input`}>{label}</label>
             <input
                 type={type}
                 className={`form-control ${hasError && "border-danger"}`}
                 onChange={handleInputChange}
                 onBlur={handleInputBlur}
-                value={value} />
+                value={value}
+                id={`${label}input`} />
             {
                 hasError &&
                 <small className='text-danger'>

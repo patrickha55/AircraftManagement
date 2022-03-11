@@ -1,8 +1,9 @@
 import { MockedProvider } from '@apollo/react-testing';
 import { cleanup, render } from '@testing-library/react';
 import React from 'react';
-import renderer from 'react-test-renderer';
+import renderer, { act } from 'react-test-renderer';
 import Aircraft, { GET_AIRCRAFTS } from '../Aircraft';
+import wait from 'waait';
 
 afterEach(cleanup);
 
@@ -51,13 +52,18 @@ const aircraftMocks = [
 // });
 
 it('should renders aircrafts', async () => {
-    const component = renderer.create(<MockedProvider mocks={aircraftMocks} addTypename={false} >
-        <Aircraft />
-    </MockedProvider>);
+    const component = (
+        <MockedProvider mocks={aircraftMocks} addTypename={false} >
+            <Aircraft />
+        </MockedProvider>
+    );
 
-    const tree = component.toJSON();
 
-    await new Promise(resolve => setTimeout(resolve, 4000));
+    const tree = renderer
+        .create(component)
+        .toJSON();
+
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
     expect(tree).toMatchSnapshot();
 });
