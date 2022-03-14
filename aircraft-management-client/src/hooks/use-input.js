@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const useInput = (validateValue) => {
-    const [enteredValue, setEnteredValue] = useState(null);
+    const [enteredValue, setEnteredValue] = useState("");
     const [isTouched, setIsTouched] = useState(false);
 
     const valueIsValid = validateValue(enteredValue);
@@ -11,7 +11,7 @@ const useInput = (validateValue) => {
         setEnteredValue(event.target.value);
     };
 
-    const inputBlurHandler = (event) => {
+    const inputBlurHandler = () => {
         setIsTouched(true);
     };
 

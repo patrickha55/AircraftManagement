@@ -64,14 +64,11 @@ const Aircraft = () => {
         };
     };
 
+    if (loadingAircraft) return <p>Loading...</p>
+    if (error) return <h2 className='alert alert-danger'>{error.message}</h2>
+
     return (
         <div className='container'>
-            {
-                loadingAircraft && !aircrafts && <p>Loading...</p>
-            }
-            {
-                error && !aircrafts && <h2 className='alert alert-danger'>{error.message}</h2>
-            }
             <h1 className='text-center my-5'>Aircraft</h1>
             <Button variant="contained" color="primary" onClick={handleModal}>
                 Create Aircraft
@@ -80,7 +77,6 @@ const Aircraft = () => {
                 open={open}
                 handleModal={handleModal}
                 onCreateAircraft={createAircraftHandler} />
-            {console.log(aircrafts)}
             {
                 aircrafts.map((a) =>
                     <div key={a.id} className="card w-75 mx-auto mt-4 shadow-lg" >

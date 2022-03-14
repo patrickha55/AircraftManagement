@@ -118,11 +118,6 @@ const CreateAircraftModal = ({
         resetModelInput();
     };
 
-    // useEffect(() => {
-    //     console.log("effect mutation run")
-
-    // }, [dataMutation]);
-
     const resetHandler = () => {
         resetManufacturerInput();
         resetIdInput();
@@ -170,12 +165,15 @@ const CreateAircraftModal = ({
                                 value={enteredModel} />
                         </div>
                         <div className="col-6 ">
-                            <Select label="Role"
-                                defaultOptionLabel="Open to select a role"
-                                items={data?.roles}
-                                handleSelect={handleRoleSelect}
-                                size={false}
-                                isValid={role > 0} />
+                            {
+                                data && <Select label="Role"
+                                    defaultOptionLabel="Open to select a role"
+                                    items={data.roles}
+                                    handleSelect={handleRoleSelect}
+                                    size={false}
+                                    isValid={role > 0}
+                                    defaultSelectedValue={role} />
+                            }
                         </div>
                         <div className="col-6">
                             <Button

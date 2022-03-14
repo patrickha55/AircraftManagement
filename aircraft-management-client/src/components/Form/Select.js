@@ -3,6 +3,7 @@ import React, { FormEvent } from 'react'
 const Select = ({
     label,
     defaultOptionLabel,
+    defaultSelectedValue,
     handleSelect,
     items,
     size,
@@ -14,8 +15,9 @@ const Select = ({
                 aria-label=".form-select-lg example"
                 onChange={handleSelect}
                 id={label}
+                value={defaultSelectedValue}
             >
-                <option selected>{defaultOptionLabel}</option>
+                <option>{defaultOptionLabel}</option>
                 {
                     items.map((i) => <option key={i.id} value={i.id} >{i.name}</option>)
                 }
